@@ -16,10 +16,10 @@ When(/^the school I graduated from$/) do
   fill_in 'School', with: 'Oxford University'
 end
 
-When(/^click "(.*?)"$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+Then(/^I should see a welcome message$/) do
+  expect(page).to have_content 'Sign up successful'
 end
 
-Then(/^I should see a welcome message$/) do
-  pending # express the regexp above with the code you wish you had
+When(/^I sign up with invalid information$/) do
+  fill_in 'Date of birth', with: '2005-01-01'
 end

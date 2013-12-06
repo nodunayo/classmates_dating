@@ -5,10 +5,28 @@ class User < ActiveRecord::Base
 
   validates :email, presence: true
   validates :encrypted_password, presence: true
+  validate :must_be_over_18
 
   def password=(pwd)
-    return unless pwd
+    return if pwd.blank?
+    # salted = ENV["salt"] + email + pwd
     self.encrypted_password = BCrypt::Password.create(pwd)
+  end
+
+  def school_name
+    school ? school.name : ''
+  end
+
+  def school_name=(name)
+    self.school = School.find_or_create_by(name: name)
+  end
+
+  private
+
+  def must_be_over_18
+    if dob.blank? || (dob > 18.years.ago)
+      errors.add(:dob, 'must be over 18 to use the site')
+    end
   end
 
 end
