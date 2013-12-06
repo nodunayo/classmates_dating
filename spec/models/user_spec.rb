@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe User do
   
+  it {should belong_to :school}
+
   context 'passwords' do
     let(:user) { User.new }
     before do    
@@ -13,7 +15,7 @@ describe User do
     end
 
     it 'encrypts the password' do
-      expect(user.encrypted_password).not_to eq 'foobar'
+      expect(user.encrypted_password.to_s).not_to eq 'foobar'
     end
   end
 

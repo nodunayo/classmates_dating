@@ -8,11 +8,12 @@ When(/^I fill in my email and password$/) do
 end
 
 When(/^my personal details$/) do
-  pending # express the regexp above with the code you wish you had
+  fill_in 'Date of birth', with: '1980-01-01'
+  choose 'Male'
 end
 
 When(/^the school I graduated from$/) do
-  pending # express the regexp above with the code you wish you had
+  fill_in 'School', with: 'Oxford University'
 end
 
 When(/^click "(.*?)"$/) do |arg1|

@@ -11,10 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131206081614) do
+ActiveRecord::Schema.define(version: 20131206085003) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "schools", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "first_name"
@@ -24,6 +30,10 @@ ActiveRecord::Schema.define(version: 20131206081614) do
     t.string   "encrypted_password"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "gender"
+    t.integer  "school_id"
   end
+
+  add_index "users", ["school_id"], name: "index_users_on_school_id", using: :btree
 
 end

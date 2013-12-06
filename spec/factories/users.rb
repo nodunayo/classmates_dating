@@ -7,5 +7,6 @@ FactoryGirl.define do
     email "nadia@foo.com"
     dob "1991-12-06 08:16:14"
     password "12345678"
+    gender 'female'
   end
 end

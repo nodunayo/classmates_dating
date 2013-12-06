@@ -1,2 +1,27 @@
 <%= form_for User.new do |f| %>
+  <p>
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </p>
+  <p>
+    <%= f.label :password %>
+    <%= f.text_field :password, value: nil %>
+  </p>
+  <p>
+    <%= f.label :dob, 'Date of birth' %>
+    <%= f.text_field :dob %>
+  </p>
+
+  <p>
+    Gender
+    <%= f.label :gender, 'Male', value: :male %>
+    <%= f.radio_button :gender, :male %>
+
+    <%= f.label :gender, 'Female', value: :female %>
+    <%= f.radio_button :gender, :female %>
+  </p>
+  <p>
+    <%= f.label :school %>
+    <%= f.text_field :school %>
+  </p>
 <% end %>
