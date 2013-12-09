@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   validates :encrypted_password, presence: true
   validate :must_be_over_18
 
+
   def password=(pwd)
     return if pwd.blank?
     # salted = ENV["salt"] + email + pwd
@@ -29,6 +30,21 @@ class User < ActiveRecord::Base
       return user.id
     end
   end
+
+  def opposite_gender
+    case gender
+    when 'Male'
+      'Female'
+    when 'Female'
+      'Male'
+    else
+      raise 'Unknown gender!'
+    end
+  end
+
+  scope :of_opposite_gender, ->(user) {
+    where(gender: user.opposite_gender)
+  }
 
   private
 

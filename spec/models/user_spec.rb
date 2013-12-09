@@ -94,7 +94,37 @@ describe User do
       it 'returns the user id given the correct details' do
         expect(User.login('nadia@foo.com', '12345678')).to eq @user.id
       end
-      
+
+    end
+  end
+
+  context '.opposite_gender' do
+
+    it 'returns male for a female user' do
+      user = create(:user, gender: 'Male')
+      expect(user.opposite_gender).to eq 'Female'
+    end
+
+    it 'returns female for a male user' do
+      user = create(:user, gender: 'Female')
+      expect(user.opposite_gender).to eq 'Male'
+    end
+
+    it 'raises an error given an unknown gender' do
+      user = create(:user, gender: 'Foo')
+      expect { user.opposite_gender }.to raise_error
+    end
+  end
+
+  context '.of_opposite_gender' do
+    let!(:dave) { create(:user, first_name: 'Dave', gender: 'Male') }
+    let!(:brenda) { create(:user, first_name: 'Brenda', gender: 'Female') }
+    let!(:john) { create(:user, first_name: 'John', gender: 'Male') }
+
+    it 'returns the students of the opposite gender' do
+      female_students = User.of_opposite_gender(dave)
+      expect(female_students).to include brenda
+      expect(female_students).not_to include john
     end
   end
 
