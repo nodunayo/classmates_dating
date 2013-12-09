@@ -21,6 +21,15 @@ class User < ActiveRecord::Base
     self.school = School.find_or_create_by(name: name)
   end
 
+  def self.login(email, password)
+    user = find_by(email: email)
+    return nil if !user
+
+    if BCrypt::Password.new(user.encrypted_password) == password
+      return user.id
+    end
+  end
+
   private
 
   def must_be_over_18

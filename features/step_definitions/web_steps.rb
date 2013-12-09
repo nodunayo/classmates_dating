@@ -1,4 +1,4 @@
-When(/^click "(.*?)"$/) do |button|
+When(/^I click "(.*?)"$/) do |button|
   click_button button
 end
 

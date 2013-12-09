@@ -73,4 +73,29 @@ describe User do
     end
   end
 
+  context '#login' do
+    before do
+      @user = create(:user)
+    end
+
+    context 'invalid credentials' do
+
+      it 'returns nil given a wrong email' do
+        expect(User.login('b@c.com', '12345678')).to eq nil
+      end
+
+      it 'returns nil given a wrong password' do
+        expect(User.login('nadia@foo.com', '12345609')).to eq nil
+      end
+    end
+
+    context 'valid credentials' do
+
+      it 'returns the user id given the correct details' do
+        expect(User.login('nadia@foo.com', '12345678')).to eq @user.id
+      end
+      
+    end
+  end
+
 end
