@@ -1,4 +1,5 @@
 class MessagesController < ApplicationController
+  
   def index
   end
 
@@ -7,8 +8,7 @@ class MessagesController < ApplicationController
   end
 
   def create
-    recipient = User.find_by_email(params[:message][:recipient])
-    @message = Message.new sender: current_user, recipient: recipient, body: params[:message][:body]
+    @message = Message.new message_params
     if @message.save
       flash[:notice] = "Message sent!"
       redirect_to '/messages'
@@ -17,5 +17,14 @@ class MessagesController < ApplicationController
     end
   end
 
+  private
+
+  def recipient
+    User.find_by_email(params[:message][:recipient])
+  end
+
+  def message_params
+    { sender: current_user, recipient: recipient, body: params[:message][:body] }
+  end
 
 end

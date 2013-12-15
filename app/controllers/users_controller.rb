@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  
   def new
     @user = User.new
   end
@@ -18,4 +19,5 @@ class UsersController < ApplicationController
   def user_params
     params[:user].permit( :first_name, :last_name, :gender, :email, :dob, :password, :school_name )
   end
+  
 end

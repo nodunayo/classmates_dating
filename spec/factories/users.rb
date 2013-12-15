@@ -9,5 +9,22 @@ FactoryGirl.define do
     password "12345678"
     gender 'female'
     school
+
+    factory :brenda do
+      first_name "Brenda"
+    end
+
+    factory :dave do
+      first_name "Dave"
+      email "dave@bar.com"
+      gender 'male'
+
+      factory :john do
+        first_name "John"
+      end
+
+    end
+
   end
+
 end

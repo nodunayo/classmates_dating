@@ -119,9 +119,9 @@ describe User do
   end
 
   context '.of_opposite_gender' do
-    let!(:dave) { create(:user, first_name: 'Dave', gender: 'male') }
-    let!(:brenda) { create(:user, first_name: 'Brenda', gender: 'female') }
-    let!(:john) { create(:user, first_name: 'John', gender: 'male') }
+    let!(:dave) { create(:dave) }
+    let!(:brenda) { create(:brenda) }
+    let!(:john) { create(:john) }
 
     it 'returns the students of the opposite gender' do
       female_students = User.of_opposite_gender(dave)

@@ -3,8 +3,7 @@ Given(/^I am on the inbox page$/) do
 end
 
 Given(/^I have received a message$/) do
-  dave = create(:user, first_name: "Dave", email: "dave@bar.com")
-  Message.create(sender: dave , recipient: @current_user, body: "Hi, Nadia.")
+  Message.create(sender: create(:dave) , recipient: @current_user, body: "Hi, Nadia.")
 end
 
 Then(/^I should see the message$/) do
@@ -12,8 +11,7 @@ Then(/^I should see the message$/) do
 end
 
 Given(/^I have sent a message$/) do
-  dave = create(:user, first_name: "Dave", email: "dave@bar.com")
-  Message.create(sender: @current_user, recipient: dave, body: "Hi, Dave!")
+  Message.create(sender: @current_user, recipient: create(:dave), body: "Hi, Dave!")
 end
 
 Then(/^I should see my sent message$/) do
@@ -25,7 +23,7 @@ Given(/^I am on the compose message page$/) do
 end
 
 Given(/^I have submitted the form$/) do
-  dave = create(:user, first_name: "Dave", email: "dave@bar.com")
+  create(:dave)
   fill_in 'Recipient', with: "dave@bar.com"
   fill_in 'Body', with: "Hi, Dave!"
   click_button 'Send message'
