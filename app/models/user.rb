@@ -2,6 +2,7 @@ require 'bcrypt'
 
 class User < ActiveRecord::Base
   belongs_to :school
+  has_many :messages, foreign_key: :recipient_id
 
   validates :email, presence: true
   validates :encrypted_password, presence: true
@@ -31,12 +32,20 @@ class User < ActiveRecord::Base
     end
   end
 
+  # def gay?
+  #   sexuality == 'Gay'
+  # end
+
+  # def appropriate_gender
+  #   gay? ? gender : opposite_gender
+  # end
+
   def opposite_gender
     case gender
-    when 'Male'
-      'Female'
-    when 'Female'
-      'Male'
+    when 'male'
+      'female'
+    when 'female'
+      'male'
     else
       raise 'Unknown gender!'
     end

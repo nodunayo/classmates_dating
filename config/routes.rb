@@ -1,13 +1,17 @@
 ClassmatesDating::Application.routes.draw do
+  get "messages/index"
   get "sessions/new"
   get "welcome/index"
   get "users/new"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
+  root 'welcome#index'
 
   resources :users, only: [:new, :create]
   resources :sessions, only: [:new, :create]
-  root 'welcome#index'
+  resources :messages
+  
   
   # You can have the root of your site routed with "root"
   # root 'welcome#index'

@@ -8,5 +8,6 @@ FactoryGirl.define do
     dob "1991-12-06 08:16:14"
     password "12345678"
     gender 'female'
+    school
   end
 end

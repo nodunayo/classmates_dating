@@ -3,6 +3,7 @@ require 'spec_helper'
 describe User do
   
   it {should belong_to :school}
+  it {should have_many :messages}
 
   context 'passwords' do
     let(:user) { User.new }
@@ -101,25 +102,25 @@ describe User do
   context '.opposite_gender' do
 
     it 'returns male for a female user' do
-      user = create(:user, gender: 'Male')
-      expect(user.opposite_gender).to eq 'Female'
+      user = create(:user, gender: 'male')
+      expect(user.opposite_gender).to eq 'female'
     end
 
     it 'returns female for a male user' do
-      user = create(:user, gender: 'Female')
-      expect(user.opposite_gender).to eq 'Male'
+      user = create(:user, gender: 'female')
+      expect(user.opposite_gender).to eq 'male'
     end
 
     it 'raises an error given an unknown gender' do
-      user = create(:user, gender: 'Foo')
+      user = create(:user, gender: 'foo')
       expect { user.opposite_gender }.to raise_error
     end
   end
 
   context '.of_opposite_gender' do
-    let!(:dave) { create(:user, first_name: 'Dave', gender: 'Male') }
-    let!(:brenda) { create(:user, first_name: 'Brenda', gender: 'Female') }
-    let!(:john) { create(:user, first_name: 'John', gender: 'Male') }
+    let!(:dave) { create(:user, first_name: 'Dave', gender: 'male') }
+    let!(:brenda) { create(:user, first_name: 'Brenda', gender: 'female') }
+    let!(:john) { create(:user, first_name: 'John', gender: 'male') }
 
     it 'returns the students of the opposite gender' do
       female_students = User.of_opposite_gender(dave)
