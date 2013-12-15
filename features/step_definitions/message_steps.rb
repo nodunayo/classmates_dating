@@ -19,3 +19,14 @@ end
 Then(/^I should see my sent message$/) do
   expect(page).to have_content "Hi, Dave!"
 end
+
+Given(/^I am on the compose message page$/) do
+  visit '/messages/new'
+end
+
+Given(/^I have submitted the form$/) do
+  dave = create(:user, first_name: "Dave", email: "dave@bar.com")
+  fill_in 'Recipient', with: "dave@bar.com"
+  fill_in 'Body', with: "Hi, Dave!"
+  click_button 'Send message'
+end

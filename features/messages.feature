@@ -12,3 +12,9 @@ Feature: Users messaging one another
     Given I have sent a message
     And I am on the inbox page
     Then I should see my sent message
+
+  Scenario: Sending messages
+    Given I am on the compose message page
+    And I have submitted the form
+    Then I should see "Message sent!"
+    And I should see my sent message
