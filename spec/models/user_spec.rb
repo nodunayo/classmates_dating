@@ -4,6 +4,7 @@ describe User do
   
   it {should belong_to :school}
   it {should have_many :messages}
+  it {should have_many :sent_messages}
 
   context 'passwords' do
     let(:user) { User.new }

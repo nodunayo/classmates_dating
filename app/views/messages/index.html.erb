@@ -1,3 +1,9 @@
-<% current_user.messages.each do |message| %>
-  <p><%= message.body %></p>
-<% end %>
+<h1>Inbox</h1>
+  <% current_user.messages.each do |message| %>
+    <p><%= message.body %></p>
+  <% end %>
+
+<h1>Sent Messages</h1>
+  <% current_user.sent_messages.each do |message| %>
+    <p><%= message.body %></p>
+  <% end %>

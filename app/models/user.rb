@@ -3,6 +3,7 @@ require 'bcrypt'
 class User < ActiveRecord::Base
   belongs_to :school
   has_many :messages, foreign_key: :recipient_id
+  has_many :sent_messages, class_name: "Message", foreign_key: :sender_id
 
   validates :email, presence: true
   validates :encrypted_password, presence: true
